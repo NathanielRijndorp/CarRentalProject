@@ -75,7 +75,12 @@ public class CarRentalController implements Initializable {
     public void setID() {
         ObservableList<Customer> customers = tableView.getItems();
         id_input.setText(String.valueOf(customers.size()));
+        for (int i = 1; i < customers.size(); i++) {
+            Customer customer = customers.get(i);
+
+        }
     }
+
     public void export() {
         ObservableList<Customer> customers = tableView.getItems();
         tableView.getItems().clear();
@@ -188,7 +193,7 @@ public class CarRentalController implements Initializable {
     void submit(ActionEvent event) {
         try {
             ObservableList<Customer> customers = tableView.getItems();
-            id_input.setText(String.valueOf(customers.size()));
+            setID();
             long day1 = rent_start_input.getValue().toEpochDay();
             long day2 = rent_end_input.getValue().toEpochDay();
             long days = (int) Math.abs(day1 - day2);
@@ -204,7 +209,7 @@ public class CarRentalController implements Initializable {
             customers.add(customer);
             tableView.setItems(customers);
         } catch (Exception e) {
-            System.out.println("ERROR BADI NAA KAY KULANG HAYSSS");
+            System.out.println("ERROR 999 MISSING ITEMS!");
         }
         setID();
     }
@@ -214,7 +219,7 @@ public class CarRentalController implements Initializable {
             int selectedID = tableView.getSelectionModel().getSelectedIndex();
             tableView.getItems().remove(selectedID);
         } catch (Exception e) {
-            System.out.println("ERROR BAI WALA KAY GI PILI NGA LINYA-");
+            System.out.println("ERROR 405 TABLE ROW CLICK!");
         }
         setID();
     }
@@ -232,7 +237,7 @@ public class CarRentalController implements Initializable {
                }
            });
        } catch (Exception e) {
-           System.out.println("ERROR! Bawal mag butang ug letter");
+           System.out.println("ERROR 121 NO LETTERS ALLOWED");
        }
 
     }
