@@ -31,7 +31,7 @@ public class LoginKeyController {
     private PasswordField pass_id;
 
     @FXML
-    protected void onLoginButtonClick(ActionEvent event) throws Exception {
+    protected void onLoginButtonClick(ActionEvent event) {
         try {
         File file = new File("src/main/resources/login.txt");
         Scanner sc = new Scanner(file);
@@ -43,11 +43,11 @@ public class LoginKeyController {
         for (Entry<String, String> entry: login_items.entrySet()) {
             if (entry.getValue().equals(email_id.getText()) && entry.getKey().equals(pass_id.getText())) {
                 login_success = true;
-                System.out.println("YEHEY");
-                root = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
+                root = FXMLLoader.load(getClass().getResource("car_rental.fxml"));
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
                 stage.setScene(scene);
+                stage.setTitle("Car Rental");
                 stage.show();
                 break;
             }
